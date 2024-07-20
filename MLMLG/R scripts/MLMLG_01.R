@@ -7,31 +7,46 @@
 #        Rolando Gonzales Martinez, Julio 2024
 # ==========================================================
 
-# Load necessary library
+# Simulaciones de un modelo lineal univariado 
+
+# Libreria: 
 library(ggplot2)
 
-# Set seed for reproducibility
-set.seed(666)
+# Definiendo semilla:
+set.seed(900)
 
-# Generate simulated data
-n <- 100  # Number of observations
-x <- rnorm(n, mean = 50, sd = 10)  # Predictor variable
-y <- 5 + 2 * x + rnorm(n, mean = 0, sd = 15)  # Response variable with some noise
-
+# Genero datos artificiales aleatorios:
+n <- 1000  # numero de observaciones
+mu <- 50
+sigma <- 10
+x <- rnorm(n, mean = mu, sd = sigma)  # Predictor variable N(mu,sigma2)
 hist(x)
-hist(y)
 
-# Combine x and y into a data frame
-data <- data.frame(x = x, y = y)
+# y = beta0 + beta1*x + e
 
-# Fit the linear regression model
-model <- lm(y ~ x, data = data)
+errores = rnorm(n, mean = 0, sd = 15)  # Errores: e ~ N(0,15)
+error_de_medicion = rnorm(n, mean = 0, sd = 1)
 
-# Summarize the model
-summary(model)
+# Parametros poblacionales:
+beta0 = 5
+beta1 = 2
 
-# Plot the data and the regression line with a black background, light blue line, and yellow points
-ggplot(data, aes(x = x, y = y)) +
+# y = beta0 + beta1*x + e
+
+ym <- beta0 + beta1*x + errores
+y <- ym + error_de_medicion
+
+# Combinar los datos x,y en un dataframe:
+datos <- data.frame(x = x, y = y)
+
+# Ajuste de un modelo de regresion lineal con una sola variable explicativa:
+modelo_lineal <- lm(y ~ x, data = datos)
+
+# Resultados del modelo
+summary(modelo_lineal)
+
+# Grafico de datos:
+ggplot(datos, aes(x = x, y = y)) +
   geom_point(color = "yellow") +
   geom_smooth(method = "lm", color = "lightblue") +
   labs(title = "Modelo de regresión lineal",
