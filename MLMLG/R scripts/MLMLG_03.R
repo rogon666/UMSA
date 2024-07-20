@@ -14,12 +14,18 @@ library(ggplot2)
 library(caret)
 
 # Configurar semilla para reproducibilidad
-set.seed(123)
+set.seed(1127)
 
 # Generar datos simulados
 n <- 100  # Tamaño de la muestra
-x <- rnorm(n, mean = 5, sd = 2)  # Variable independiente
-y <- 3 + 2 * x + rnorm(n, sd = 2)  # Variable dependiente con ruido
+mu = 5
+sigma2 = 2
+x <- rnorm(n, mean = mu, sd = sigma2)  # Variable independiente
+# Parametros del modelo de regresion:
+beta0 = 3
+beta1 = 2
+error = rnorm(n, sd = 2)
+y <- beta0 + beta1*x + error
 
 # Crear un data frame con los datos
 data <- data.frame(x = x, y = y)
@@ -49,7 +55,7 @@ ggplot(trainData, aes(x = x, y = y)) +
   geom_ribbon(aes(ymin = predict(model, newdata = trainData, interval = "prediction")[, "lwr"], 
                   ymax = predict(model, newdata = trainData, interval = "prediction")[, "upr"]), 
               alpha = 0.2, fill = "gray") +
-  labs(title = "Modelo de Regresión Lineal con Intervalos de Predicción",
+  labs(title = "Modelo de Regresión Lineal con Intervalos de Predicción: Ajuste en la muestra de aprendizaje (train)",
        x = "Variable Independiente (x)",
        y = "Variable Dependiente (y)") +
   theme_minimal() +
@@ -71,7 +77,7 @@ ggplot(trainData, aes(x = x, y = y)) +
 ggplot(testData, aes(x = x, y = y)) +
   geom_point(color = "green") +
   geom_point(aes(y = predictions[, "fit"]), color = "red", shape = 1) +
-  #geom_errorbar(aes(ymin = predictions[, "lwr"], ymax = predictions[, "upr"]), color = "red", alpha = 0.5) +
+  geom_errorbar(aes(ymin = predictions[, "lwr"], ymax = predictions[, "upr"]), color = "red", alpha = 0.5) +
   labs(title = "Predicciones del Modelo de Regresión Lineal con Intervalos de Predicción",
        x = "Variable Independiente (x)",
        y = "Variable Dependiente (y) / Predicciones") +
