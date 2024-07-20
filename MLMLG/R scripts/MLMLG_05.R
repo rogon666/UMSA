@@ -15,8 +15,13 @@ library(rstanarm)
 url <- "https://raw.githubusercontent.com/rogon666/UMSA/31e44a5cbbbf4eb7fde903fe1c192163bd8dd6ba/MLMLG/datos/burkina.csv"
 download.file(url, destfile = "burkina.csv")
 
+# Leer el archivo CSV
+data <- read.csv("burkina.csv", encoding = "latin1")
+
 # Ajustando un modelo lineal Bayesiano
-model <- stan_glm(inflacion ~ PIB, data = data, family = gaussian(), prior = normal(0, 1))
+model <- stan_glm(inflacion ~ PIB, data = data, 
+                  family = gaussian(), 
+                  prior = normal(0, 1))
 
 # Resultados
 summary(model)
