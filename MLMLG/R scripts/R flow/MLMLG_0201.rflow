@@ -7,7 +7,7 @@
 <!ENTITY quot "&#34;">
 ]>
 <rflow>
-	<graph version="0.9" width="942" height="398" locationtype="a" offsetx="-23" offsety="-32">
+	<graph version="0.9" width="1074" height="443" locationtype="a" offsetx="-19" offsety="10">
 		<setting>
 			<entry key="USE_GRID">true</entry>
 			<entry key="FOLDER">MLMLG_0201</entry>
@@ -16,13 +16,12 @@
 <properties>
     <v key="packages"/>
 </properties>
-		<node id="0" date="1721673237883" uid="dd4bde429fbbde3b" x="440" y="280">
+		<node id="0" date="1721673237883" uid="dd4bde429fbbde3b" x="440" y="260">
 			<command># install.packages(&quot;tseries&quot;)
 library(tseries)
 residuos &lt;- residuals(salarios.lm)
 # Jarque-Bera test aplicado a los residuos
 jb_test &lt;- jarque.bera.test(residuos)
-
 # Print the results
 print(jb_test)
 </command>
@@ -32,38 +31,11 @@ print(jb_test)
 			<property title="Normalidad: Test JB"/>
 			<option type="com.ef_prime.rflow.node.base.FreeNodeModel"/>
 		</node>
-		<node id="1" date="1721672850549" uid="6df71dc9e4c5ad1b" x="100" y="100">
-			<command>salarios &lt;- read.table(file = &quot;Z:/GitHub/UMSA/MLMLG/datos/salarios.csv&quot;, header = TRUE, sep = &quot;,&quot;, fileEncoding = &quot;UTF-8&quot;, quote = &quot;\&quot;&quot;, stringsAsFactors = FALSE, comment.char = &quot;&quot;, na.strings = &quot;&quot;)
+		<node id="1" date="1721672850549" uid="2dae35cec532b15e" x="540" y="160">
+			<command>salarios.lm &lt;- lm(formula = salario ~ ratio_benventas + educacion + edad, data = salarios, model = FALSE)
 </command>
 			<packages/>
-			<property title="Cargando datos"/>
-			<option type="com.ef_prime.rflow.node.ui.UINodeModel">
-<ui cls="com.ef_prime.rflow.core.app.r.RReadTable" version="0.2.1">
-    <v key="file">"Z:/GitHub/UMSA/MLMLG/datos/salarios.csv"</v>
-    <v key="_output">salarios</v>
-    <v key="_output@auto">true</v>
-    <v key="autodetect">false</v>
-    <v key="sep">","</v>
-    <v key="header">TRUE</v>
-    <v key="fileEncoding">"UTF-8"</v>
-    <v key="nrows"/>
-    <v key="na.strings">""</v>
-    <v key="quote">"\""</v>
-    <v key="stringsAsFactors">FALSE</v>
-    <v key="comment.char">""</v>
-    <v key="check.names"/>
-    <v key="colClasses_type">columns</v>
-    <v key="colClasses"/>
-    <v key="colClass">"character"</v>
-    <v key="advanced"/>
-</ui>
-			</option>
-		</node>
-		<node id="2" date="1721672850549" uid="2dae35cec532b15e" x="540" y="160">
-			<command>salarios.lm &lt;- lm(formula = salario ~ educacion + edad + educacion_posgrado + ratio_benventas, data = salarios, model = FALSE)
-</command>
-			<packages/>
-			<property title="Modelo lineal"/>
+			<property title="Modelo salarios M1"/>
 			<option type="com.ef_prime.rflow.node.ui.UINodeModel">
 <ui cls="com.ef_prime.rflow.core.app.r.RModeling" version="0.5.3.0">
     <v key="interface">single</v>
@@ -77,16 +49,13 @@ print(jb_test)
     <v key="formula_x">include</v>
     <v key="formula_list">
         <row>
+            <v>ratio_benventas</v>
+        </row>
+        <row>
             <v>educacion</v>
         </row>
         <row>
             <v>edad</v>
-        </row>
-        <row>
-            <v>educacion_posgrado</v>
-        </row>
-        <row>
-            <v>ratio_benventas</v>
         </row>
     </v>
     <v key="formula_intercept">true</v>
@@ -161,7 +130,170 @@ print(jb_test)
 </ui>
 			</option>
 		</node>
-		<node id="3" date="1721672850549" uid="74ae1c3f48cdb970" x="390" y="100">
+		<node id="2" date="1721672895963" uid="7cda773851705b3a" x="270" y="260">
+			<command>salarios.lm &lt;- lm(formula = salario ~ educacion + edad + educacion_posgrado, data = salarios, model = FALSE)
+</command>
+			<packages/>
+			<property title="Modelo salarios M2"/>
+			<option type="com.ef_prime.rflow.node.ui.UINodeModel">
+<ui cls="com.ef_prime.rflow.core.app.r.RModeling" version="0.5.3.0">
+    <v key="interface">single</v>
+    <v key="data">salarios</v>
+    <v key="_output">salarios.lm</v>
+    <v key="_output@auto">true</v>
+    <v key="formula">UI</v>
+    <v key="formula_text"/>
+    <v key="formula_object"/>
+    <v key="formula_y">salario</v>
+    <v key="formula_x">include</v>
+    <v key="formula_list">
+        <row>
+            <v>educacion</v>
+        </row>
+        <row>
+            <v>edad</v>
+        </row>
+        <row>
+            <v>educacion_posgrado</v>
+        </row>
+    </v>
+    <v key="formula_intercept">true</v>
+    <v key="models"/>
+    <v key="method">lm</v>
+    <v key="family">binomial</v>
+    <v key="exclude_intercept">false</v>
+    <v key="include_interaction">false</v>
+    <v key="stepwise">false</v>
+    <v key="stepwise_direction">forward</v>
+    <v key="lower">false</v>
+    <v key="lower_formula">UI</v>
+    <v key="lower_x"/>
+    <v key="lower_formula_object"/>
+    <v key="lower_formula_text"/>
+    <v key="rpart_method"/>
+    <v key="rpart_auto_pruning">true</v>
+    <v key="rpart_cp">0.001</v>
+    <v key="rpart_xval"/>
+    <v key="rpart_minsplit"/>
+    <v key="rpart_minbucket"/>
+    <v key="rpart_maxdepth"/>
+    <v key="nnet_size">3</v>
+    <v key="nnet_decay"/>
+    <v key="nnet_maxit"/>
+    <v key="ranger_mtry"/>
+    <v key="ranger_num_trees"/>
+    <v key="ranger_min_node_size"/>
+    <v key="ranger_importance">"impurity"</v>
+    <v key="ranger_auto_prob">true</v>
+    <v key="ranger_classify_binary">true</v>
+    <v key="xgboost_cv">true</v>
+    <v key="xgboost_cv_nfolds">5</v>
+    <v key="xgboost_cv_maxit">50</v>
+    <v key="xgboost_cv_early_stop">5</v>
+    <v key="xgboost_nrounds">5</v>
+    <v key="xgboost_importance">true</v>
+    <v key="xgboost_max_depth"/>
+    <v key="xgboost_eta"/>
+    <v key="glmnet_family"/>
+    <v key="glmnet_type">grid_search</v>
+    <v key="append">false</v>
+    <v key="skip_error">false</v>
+    <v key="subset_type">include</v>
+    <v key="subset_logical">AND</v>
+    <v key="subset_conditions"/>
+    <v key="weights"/>
+    <v key="exclude_weight">true</v>
+    <v key="args_switch">lm</v>
+    <v key="args_lm"/>
+    <v key="eval">false</v>
+    <v key="test_data"/>
+    <v key="eval_output">.eval</v>
+    <v key="eval_output@auto">true</v>
+    <v key="eval_type">numeric</v>
+    <v key="eval_type_auto">true</v>
+    <v key="eval_sort_result">true</v>
+    <v key="eval_sort_column">Mean.Squared.Error</v>
+    <v key="eval_conf_matrix">false</v>
+    <v key="eval_chart">false</v>
+    <v key="args_glm"/>
+    <v key="args_multinom"/>
+    <v key="args_rpart"/>
+    <v key="args_rpart.control"/>
+    <v key="args_nnet"/>
+    <v key="args_ranger"/>
+    <v key="args_xgboost"/>
+    <v key="args_xgboost_cv"/>
+    <v key="args_glmnet"/>
+    <v key="args_cv.glmnet"/>
+    <v key="args_step"/>
+</ui>
+			</option>
+		</node>
+		<node id="3" date="1722095765012" uid="65aa5e818a9aa8d3" x="720" y="160">
+			<command># install.packages(&quot;tseries&quot;)
+library(tseries)
+residuos &lt;- residuals(salarios.lm)
+# Jarque-Bera test aplicado a los residuos
+jb_test &lt;- jarque.bera.test(residuos)
+# Print the results
+print(jb_test)
+</command>
+			<packages>
+				<package name="tseries" attach="false"/>
+			</packages>
+			<property title="Normalidad: Test JB"/>
+			<option type="com.ef_prime.rflow.node.base.FreeNodeModel"/>
+		</node>
+		<node id="4" date="1721683259697" uid="157e69647d0f23f5" x="440" y="370">
+			<command># install.packages(&quot;lmtest&quot;)
+# install.packages(&quot;whitestrap&quot;)
+library(lmtest)
+library(whitestrap)
+
+# Breusch-Pagan test
+bp_test &lt;- bptest(salarios.lm)
+
+# White test
+white_test &lt;- white_test(salarios.lm)
+
+# Print the results
+print(bp_test)
+print(white_test)</command>
+			<packages>
+				<package name="lmtest" attach="false"/>
+				<package name="whitestrap" attach="false"/>
+			</packages>
+			<property title="Homocedasticidad"/>
+			<option type="com.ef_prime.rflow.node.base.FreeNodeModel"/>
+		</node>
+		<node id="5" date="1721672850549" uid="6df71dc9e4c5ad1b" x="100" y="100">
+			<command>salarios &lt;- read.table(file = &quot;Z:/GitHub/UMSA/MLMLG/datos/salarios.csv&quot;, header = TRUE, sep = &quot;,&quot;, fileEncoding = &quot;UTF-8&quot;, quote = &quot;\&quot;&quot;, stringsAsFactors = FALSE, comment.char = &quot;&quot;, na.strings = &quot;&quot;)
+</command>
+			<packages/>
+			<property title="Cargando datos"/>
+			<option type="com.ef_prime.rflow.node.ui.UINodeModel">
+<ui cls="com.ef_prime.rflow.core.app.r.RReadTable" version="0.2.1">
+    <v key="file">"Z:/GitHub/UMSA/MLMLG/datos/salarios.csv"</v>
+    <v key="_output">salarios</v>
+    <v key="_output@auto">true</v>
+    <v key="autodetect">false</v>
+    <v key="sep">","</v>
+    <v key="header">TRUE</v>
+    <v key="fileEncoding">"UTF-8"</v>
+    <v key="nrows"/>
+    <v key="na.strings">""</v>
+    <v key="quote">"\""</v>
+    <v key="stringsAsFactors">FALSE</v>
+    <v key="comment.char">""</v>
+    <v key="check.names"/>
+    <v key="colClasses_type">columns</v>
+    <v key="colClasses"/>
+    <v key="colClass">"character"</v>
+    <v key="advanced"/>
+</ui>
+			</option>
+		</node>
+		<node id="6" date="1721672850549" uid="74ae1c3f48cdb970" x="390" y="100">
 			<command>print(lattice::histogram(x = ~ salario, data = salarios, type = &quot;count&quot;, main = &quot;Histograma del salario&quot;))
 </command>
 			<packages>
@@ -190,112 +322,13 @@ print(jb_test)
 </ui>
 			</option>
 		</node>
-		<node id="4" date="1721672895963" uid="7cda773851705b3a" x="270" y="260">
-			<command>salarios.lm &lt;- lm(formula = salario ~ educacion + edad + educacion_posgrado, data = salarios, model = FALSE)
-</command>
-			<packages/>
-			<property title="Modelo lineal"/>
-			<option type="com.ef_prime.rflow.node.ui.UINodeModel">
-<ui cls="com.ef_prime.rflow.core.app.r.RModeling" version="0.5.3.0">
-    <v key="interface">single</v>
-    <v key="data">salarios</v>
-    <v key="_output">salarios.lm</v>
-    <v key="_output@auto">true</v>
-    <v key="formula">UI</v>
-    <v key="formula_text"/>
-    <v key="formula_object"/>
-    <v key="formula_y">salario</v>
-    <v key="formula_x">include</v>
-    <v key="formula_list">
-        <row>
-            <v>educacion</v>
-        </row>
-        <row>
-            <v>edad</v>
-        </row>
-        <row>
-            <v>educacion_posgrado</v>
-        </row>
-    </v>
-    <v key="formula_intercept">true</v>
-    <v key="models"/>
-    <v key="method">lm</v>
-    <v key="family">binomial</v>
-    <v key="exclude_intercept">false</v>
-    <v key="include_interaction">false</v>
-    <v key="stepwise">false</v>
-    <v key="stepwise_direction">forward</v>
-    <v key="lower">false</v>
-    <v key="lower_formula">UI</v>
-    <v key="lower_x"/>
-    <v key="lower_formula_object"/>
-    <v key="lower_formula_text"/>
-    <v key="rpart_method"/>
-    <v key="rpart_auto_pruning">true</v>
-    <v key="rpart_cp">0.001</v>
-    <v key="rpart_xval"/>
-    <v key="rpart_minsplit"/>
-    <v key="rpart_minbucket"/>
-    <v key="rpart_maxdepth"/>
-    <v key="nnet_size">3</v>
-    <v key="nnet_decay"/>
-    <v key="nnet_maxit"/>
-    <v key="ranger_mtry"/>
-    <v key="ranger_num_trees"/>
-    <v key="ranger_min_node_size"/>
-    <v key="ranger_importance">"impurity"</v>
-    <v key="ranger_auto_prob">true</v>
-    <v key="ranger_classify_binary">true</v>
-    <v key="xgboost_cv">true</v>
-    <v key="xgboost_cv_nfolds">5</v>
-    <v key="xgboost_cv_maxit">50</v>
-    <v key="xgboost_cv_early_stop">5</v>
-    <v key="xgboost_nrounds">5</v>
-    <v key="xgboost_importance">true</v>
-    <v key="xgboost_max_depth"/>
-    <v key="xgboost_eta"/>
-    <v key="glmnet_family"/>
-    <v key="glmnet_type">grid_search</v>
-    <v key="append">false</v>
-    <v key="skip_error">false</v>
-    <v key="subset_type">include</v>
-    <v key="subset_logical">AND</v>
-    <v key="subset_conditions"/>
-    <v key="weights"/>
-    <v key="exclude_weight">true</v>
-    <v key="args_switch">lm</v>
-    <v key="args_lm"/>
-    <v key="eval">false</v>
-    <v key="test_data"/>
-    <v key="eval_output">.eval</v>
-    <v key="eval_output@auto">true</v>
-    <v key="eval_type">numeric</v>
-    <v key="eval_type_auto">true</v>
-    <v key="eval_sort_result">true</v>
-    <v key="eval_sort_column">Mean.Squared.Error</v>
-    <v key="eval_conf_matrix">false</v>
-    <v key="eval_chart">false</v>
-    <v key="args_glm"/>
-    <v key="args_multinom"/>
-    <v key="args_rpart"/>
-    <v key="args_rpart.control"/>
-    <v key="args_nnet"/>
-    <v key="args_ranger"/>
-    <v key="args_xgboost"/>
-    <v key="args_xgboost_cv"/>
-    <v key="args_glmnet"/>
-    <v key="args_cv.glmnet"/>
-    <v key="args_step"/>
-</ui>
-			</option>
-		</node>
-		<node id="5" date="1721672850548" uid="9521d7da3dd9576e" x="270" y="40">
-			<command>print(lattice::xyplot(x = salario ~ educacion, data = salarios, type = c(&quot;p&quot;, &quot;r&quot;)))
+		<node id="7" date="1722095243950" uid="7be6913fe367d6c7" x="282" y="30">
+			<command>print(lattice::xyplot(x = salario ~ educacion, data = salarios, type = &quot;p&quot;))
 </command>
 			<packages>
 				<package name="lattice" attach="false"/>
 			</packages>
-			<property title="Diagrama cruzado"/>
+			<property title="Salarios vs. educacion"/>
 			<option type="com.ef_prime.rflow.node.ui.UINodeModel">
 <ui cls="com.ef_prime.rflow.core.app.r.RLatticeXYPlot" version="0.2.0">
     <v key="data">salarios</v>
@@ -311,8 +344,8 @@ print(jb_test)
     <v key="lines">false</v>
     <v key="line_type">"l"</v>
     <v key="sort_by_x">true</v>
-    <v key="fitted_line">true</v>
-    <v key="fitted_line_type">"r"</v>
+    <v key="fitted_line">false</v>
+    <v key="fitted_line_type">"spline"</v>
     <v key="grid">false</v>
     <v key="grid_type">TRUE</v>
     <v key="main"/>
@@ -332,29 +365,7 @@ print(jb_test)
 </ui>
 			</option>
 		</node>
-		<node id="6" date="1721683259697" uid="157e69647d0f23f5" x="440" y="370">
-			<command># install.packages(&quot;lmtest&quot;)
-# install.packages(&quot;whitestrap&quot;)
-library(lmtest)
-library(whitestrap)
-
-# Breusch-Pagan test
-bp_test &lt;- bptest(salarios.lm)
-
-# White test
-white_test &lt;- white_test(salarios.lm)
-
-# Print the results
-print(bp_test)
-print(white_test)</command>
-			<packages>
-				<package name="lmtest" attach="false"/>
-				<package name="whitestrap" attach="false"/>
-			</packages>
-			<property title="Homocedasticidad"/>
-			<option type="com.ef_prime.rflow.node.base.FreeNodeModel"/>
-		</node>
-		<node id="7" date="1721672850548" uid="9ae3343a920eaf62" x="270" y="160">
+		<node id="8" date="1721672850548" uid="9ae3343a920eaf62" x="270" y="160">
 			<command>salarios &lt;- local({
 	x &lt;- salarios
 	y &lt;- salarios
@@ -378,13 +389,14 @@ print(white_test)</command>
 </ui>
 			</option>
 		</node>
-		<edge from="1" to="4"/>
-		<edge from="4" to="0"/>
-		<edge from="1" to="7"/>
+		<edge from="5" to="2"/>
+		<edge from="5" to="8"/>
+		<edge from="8" to="1"/>
+		<edge from="2" to="4"/>
+		<edge from="5" to="7"/>
+		<edge from="2" to="0"/>
+		<edge from="5" to="6"/>
 		<edge from="1" to="3"/>
-		<edge from="7" to="2"/>
-		<edge from="1" to="5"/>
-		<edge from="4" to="6"/>
 	</graph>
 	<task>
 		<taskgroup>
