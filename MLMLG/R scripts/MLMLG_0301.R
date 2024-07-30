@@ -38,7 +38,8 @@
   
   # Ajuste del modelo de Poisson usando cuasi-verosimilitud
   modelo_poisson <- glm(y ~ x1 + x2, 
-                        data = datos, family = quasipoisson(link = "log"))
+                        data = datos, 
+                        family = quasipoisson(link = "log"))
   
   # Resumen del modelo
   summary(modelo_poisson)
@@ -50,7 +51,7 @@
   n <- 100
   x <- rnorm(n)
   beta <- c(0.5, 2)
-  lambda <- exp(beta[1] + beta[2] * x)
+  lambda <- exp(beta[1] + beta[2]*x)
   y <- rpois(n, lambda)
 
   # Momentos muestrales

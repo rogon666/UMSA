@@ -13,7 +13,7 @@
 library(ggplot2)
 
 # Función para simular datos y estimar los parámetros beta en un modelo de Poisson
-simulate_bias_asymptotic_poisson <- function(n, beta0 = 0.5, beta1 = 1.5, num_sim = 1000) {
+simulacion_insesgamiento_asintotico_poisson <- function(n, beta0 = 0.5, beta1 = 1.5, num_sim = 1000) {
   beta0_hats <- numeric(num_sim)
   beta1_hats <- numeric(num_sim)
   
@@ -42,7 +42,7 @@ set.seed(123)
 results <- data.frame()
 
 for (n in sample_sizes) {
-  sim_results <- simulate_bias_asymptotic_poisson(n, beta0_true, beta1_true)
+  sim_results <- simulacion_insesgamiento_asintotico_poisson(n, beta0_true, beta1_true)
   sim_results$sample_size <- n
   results <- rbind(results, sim_results)
 }

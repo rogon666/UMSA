@@ -40,7 +40,8 @@ sample_size <- 100
 
 # Realizar simulación
 set.seed(123)
-results <- simulacion_insesgamiento_poisson(sample_size, beta0_true, beta1_true)
+results <- simulacion_insesgamiento_poisson(sample_size, 
+                                            beta0_true, beta1_true)
 
 # Graficar los resultados
 ggplot(results, aes(x = beta0_hat)) +

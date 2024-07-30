@@ -30,11 +30,13 @@ sample_sizes <- seq(10, 1000, by = 10)
 
 # Realizar simulación
 set.seed(123)
-results <- data.frame(sample_size = integer(), beta0_hat = numeric(), beta1_hat = numeric())
+results <- data.frame(sample_size = integer(), 
+                      beta0_hat = numeric(), beta1_hat = numeric())
 
 for (n in sample_sizes) {
   coefs <- simulacion_consistencia_poisson(n, beta0_true, beta1_true)
-  results <- rbind(results, data.frame(sample_size = n, beta0_hat = coefs[1], beta1_hat = coefs[2]))
+  results <- rbind(results, 
+      data.frame(sample_size = n, beta0_hat = coefs[1], beta1_hat = coefs[2]))
 }
 
 # Graficar los resultados

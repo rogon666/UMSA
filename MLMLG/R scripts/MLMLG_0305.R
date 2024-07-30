@@ -12,7 +12,7 @@
 library(ggplot2)
 
 # Función para simular datos y estimar los parámetros beta en un modelo de Poisson
-simulate_asymptotic_distribution_poisson <- function(n, beta0 = 0.5, beta1 = 1.5, num_sim = 1000) {
+simulacion_distribucion_asintotica_poisson <- function(n, beta0 = 0.5, beta1 = 1.5, num_sim = 1000) {
   beta0_hats <- numeric(num_sim)
   beta1_hats <- numeric(num_sim)
   
@@ -38,12 +38,14 @@ sample_size <- 1000
 
 # Realizar simulación
 set.seed(123)
-results <- simulate_asymptotic_distribution_poisson(sample_size, beta0_true, beta1_true)
+results <- simulacion_distribucion_asintotica_poisson(sample_size, 
+                                                      beta0_true, 
+                                                      beta1_true)
 
 # Graficar los resultados para beta0
 ggplot(results, aes(x = beta0_hat)) +
   geom_histogram(aes(y = ..density..), bins = 30, fill = "blue", alpha = 0.5) +
-  geom_density(color = "blue", size = 1) +
+  geom_density(color = "blue", linewidth = 1) +
   geom_vline(xintercept = beta0_true, linetype = "dashed", color = "red") +
   stat_function(fun = dnorm, args = list(mean = mean(results$beta0_hat), sd = sd(results$beta0_hat)), 
                 color = "black", linetype = "dotted", size = 1) +
@@ -55,7 +57,7 @@ ggplot(results, aes(x = beta0_hat)) +
 # Graficar los resultados para beta1
 ggplot(results, aes(x = beta1_hat)) +
   geom_histogram(aes(y = ..density..), bins = 30, fill = "blue", alpha = 0.5) +
-  geom_density(color = "blue", size = 1) +
+  geom_density(color = "blue", linewidth = 1) +
   geom_vline(xintercept = beta1_true, linetype = "dashed", color = "red") +
   stat_function(fun = dnorm, args = list(mean = mean(results$beta1_hat), sd = sd(results$beta1_hat)), 
                 color = "black", linetype = "dotted", size = 1) +
