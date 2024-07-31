@@ -19,7 +19,9 @@
 # matriculados = personas matriculadas, en miles
 # region = región del país (C = Central, MO = Medio Oeste, NE = Noreste, SE = Sudeste, SO = Suroeste y O = Oeste)
 
+library(ggplot2)
 
+# --------------------- Cargar datos ----------------------------------
 url = "https://raw.githubusercontent.com/rogon666/UMSA/main/MLMLG/datos/crimenes.csv"
 download.file(url, destfile = "crimenes_USA.csv")
 datos <- read.csv("crimenes_USA.csv")
