@@ -177,6 +177,5 @@ musq <- mu_modelo_MC*mu_modelo_MC
 mu2 <- mean(musq)*n
 chi_estat <- (mu2 - nybar)^2/(2*mu2) 
 pvalue_LM <- pchisq(chi_estat,1,lower.tail = FALSE)
-# Null hypothesis: no overdispersion
+# Null hypothesis: NO EXISTE SOBREDISPERSION
 cat("\n Estadigrafo LM (Chi2) = ", chi_estat, "\n p-value (Chi2) = ", pvalue_LM, "\n")
-
