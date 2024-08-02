@@ -130,6 +130,21 @@ coeficientes <- coef(modelo_completo)
 exp_coeficientes <- exp(coeficientes)
 prt_coeficientes <- 100*(exp(coeficientes) - 1)
 
+# Cálculo de intervalos de confianza al 95% para los coeficientes
+conf_int <- confint(modelo_completo)
+
+# Exponenciar los límites del intervalo de confianza
+exp_conf_int <- exp(conf_int)
+
+# Mostrar los resultados
+exp_conf_int
+
+# Calcular el cambio porcentual y sus intervalos de confianza
+change_pct <- 100 *(exp_conf_int - 1)
+
+# Mostrar los resultados
+change_pct
+
 # Mostrar los coeficientes y sus exponentiales
 print(coeficientes)
 print(exp_coeficientes)
