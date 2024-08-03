@@ -76,3 +76,29 @@ significativas <- resultados %>% filter(P_Values < 0.05)
 
 print("Variables Significativas:")
 print(significativas)
+
+# Separar las clases
+clase_mayoritaria <- datos %>% filter(renuncia_binaria == 0)
+clase_minoritaria <- datos %>% filter(renuncia_binaria == 1)
+
+# Submuestrear la clase mayoritaria para igualar el tamaño de la clase minoritaria
+set.seed(123) # Para reproducibilidad
+clase_mayoritaria_submuestreada <- clase_mayoritaria %>% sample_n(nrow(clase_minoritaria))
+
+# Combinar las clases submuestreadas
+datos_balanceados <- bind_rows(clase_mayoritaria_submuestreada, clase_minoritaria)
+
+# Ajustar el modelo logit
+modelo_logit <- glm(renuncia_binaria ~ edad + viajes + departamento + 
+                      educacion + campo_de_educacion + 
+                      satisfaccion_ambiente + genero + 
+                      involucracion_laboral + rol_laboral + 
+                      satisfaccion_laboral + estado_civil + ingreso_mensual + 
+                      num_empresas_trabajadas + horas_extras + 
+                      incremento_salarial_porcentaje + calificacion_de_rendimiento + 
+                      antiguedad + antiguedad_en_el_puesto + 
+                      anios_desde_ultimo_ascenso + anios_con_actual_supervisor,
+                    family = binomial(link = "logit"), 
+                    data = datos_balanceados)
+
+summary(modelo_logit)
