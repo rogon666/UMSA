@@ -27,6 +27,7 @@ data <- data.frame(y, x1, x2)
 # Ajustar modelos
 modelo_logit <- glm(y ~ x1 + x2, 
                     family = binomial(link = "logit"), data = data)
+
 modelo_probit <- glm(y ~ x1 + x2, 
                      family = binomial(link = "probit"), data = data)
 modelo_gompit <- glm(y ~ x1 + x2, 
