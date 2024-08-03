@@ -13,6 +13,7 @@ library(dplyr)
 
 # --------------------- Cargar datos ----------------------------------
 url = "https://raw.githubusercontent.com/rogon666/UMSA/main/MLMLG/datos/empleados_short.csv"
+url = "https://raw.githubusercontent.com/rogon666/UMSA/main/MLMLG/datos/empleados_balanceado.csv"
 download.file(url, destfile = "empleados.csv")
 datos <- read.csv("empleados.csv")
 
