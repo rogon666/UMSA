@@ -125,7 +125,7 @@ cat("Pseudo R2 de McFadden del modelo completo:", McFpseudoR2_completo, "\n")
 # Resumen del modelo
 summary(modelo_completo)
 
-# Extraer los coeficientes y calcular sus exponentiales
+# Extraer los coeficientes y calcular sus exponenciales
 coeficientes <- coef(modelo_completo)
 exp_coeficientes <- exp(coeficientes)
 prt_coeficientes <- 100*(exp(coeficientes) - 1)
@@ -194,6 +194,16 @@ chi_estat <- (mu2 - nybar)^2/(2*mu2)
 pvalue_LM <- pchisq(chi_estat,1,lower.tail = FALSE)
 # Null hypothesis: NO EXISTE SOBREDISPERSION
 cat("\n Estadigrafo LM (Chi2) = ", chi_estat, "\n p-value (Chi2) = ", pvalue_LM, "\n")
+
+# ------------ Errores estándar robustos para el modelo de Poisson -------------
+
+library(sandwich)
+library(lmtest)
+# Calcular errores estándar robustos
+ee_robustos <- vcovHC(modelo_completo, type = "HC0")
+
+# Realizar tests de hipótesis con errores estándar robustos
+coeftest(modelo_completo, vcov = ee_robustos)
 
 # ---------------------- Modelo binomial negativo ------------------------------
 # install.packages("MASS")
