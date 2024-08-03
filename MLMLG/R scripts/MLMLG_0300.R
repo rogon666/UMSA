@@ -194,3 +194,108 @@ chi_estat <- (mu2 - nybar)^2/(2*mu2)
 pvalue_LM <- pchisq(chi_estat,1,lower.tail = FALSE)
 # Null hypothesis: NO EXISTE SOBREDISPERSION
 cat("\n Estadigrafo LM (Chi2) = ", chi_estat, "\n p-value (Chi2) = ", pvalue_LM, "\n")
+
+# ---------------------- Modelo binomial negativo ------------------------------
+# install.packages("MASS")
+library(MASS)
+
+# Ajuste del modelo de binomial negativo
+modelo_binomial_negativo <- glm.nb(nv ~ matriculados + region, 
+                                   data = datos)
+
+# Resumen del modelo de binomial negativo
+summary(modelo_binomial_negativo)
+
+# ---------------------- Modelos con inflacion de ceros ------------------------
+# install.packages("pscl")
+library(pscl)
+
+# Ajustar el modelo zero-inflated Poisson
+modelo_zip <- zeroinfl(nv ~ tipo + region | matriculados, 
+                       data = datos, dist = "poisson")
+
+# Ajustar el modelo ZINB
+modelo_zinb <- zeroinfl(nv ~ region + tipo | matriculados, 
+                        data = datos, dist = "negbin")
+
+# Mostrar el resumen del modelo zero-inflated Poisson (ZIP)
+summary(modelo_zip)
+
+# Resumen del modelo ZIP
+summary(modelo_zinb)
+
+# --------------------- Modelo de Possion con offset ---------------------------
+
+# Ajustar el modelo de Poisson con un offset
+modelo_offset <- glm(nv ~ region + tipo + offset(log(matriculados)), 
+                     family = poisson, data = datos)
+
+summary(modelo_offset)
+
+# Estadigrafo de Sobredispersión
+Pearson_Chi2 <- sum(residuals(modelo_offset, type = "deviance")^2)
+grados_de_libertad <- modelo_offset$df.residual
+sobredispersion <- Pearson_Chi2 / grados_de_libertad
+if (sobredispersion > 1) {
+  cat("Posible sobredispersión detectada. Sobredispersión =", sobredispersion, "\n")
+} else {
+  cat("No se detectó sobredispersión. Sobredispersión =", sobredispersion, "\n")
+}
+
+# Test de sobredispersion basado en el multiplicador de Lagrange:
+mu_modelo <- predict(modelo_offset, type = "response")
+mmu <- mean(mu_modelo) 
+nybar <- n*mmu 
+musq <- mu_modelo_MC*mu_modelo
+mu2 <- mean(musq)*n
+chi_estat <- (mu2 - nybar)^2/(2*mu2) 
+pvalue_LM <- pchisq(chi_estat,1,lower.tail = FALSE)
+# Null hypothesis: no overdispersion
+cat("\n Estadigrafo LM (Chi2) = ", chi_estat, "\n p-value (Chi2) = ", pvalue_LM, "\n")
+
+# ---------- Modelo Poisson con interacciones y transformaciones ---------------
+
+# Estandarizar las variables continuas
+datos$zmatriculados <- scale(datos$matriculados)
+
+# Ajuste del Poisson con interacciones
+modelo_Poisson_interacciones <- glm(nv ~ zmatriculados * region, 
+                                    data = datos, family = poisson)
+summary(modelo_Poisson_interacciones)
+
+# Estadigrafo de Sobredispersión
+Pearson_Chi2 <- sum(residuals(modelo_Poisson_interacciones, type = "deviance")^2)
+grados_de_libertad <- modelo_Poisson_interacciones$df.residual
+sobredispersion <- Pearson_Chi2 / grados_de_libertad
+if (sobredispersion > 1) {
+  cat("Posible sobredispersión detectada. Sobredispersión =", sobredispersion, "\n")
+} else {
+  cat("No se detectó sobredispersión. Sobredispersión =", sobredispersion, "\n")
+}
+
+# Test de sobredispersion basado en el multiplicador de Lagrange:
+mu_modelo_interacciones <- predict(modelo_Poisson_interacciones,, type = "response")
+mmu <- mean(mu_modelo_interacciones) 
+nybar <- n*mmu 
+musq <- mu_modelo_MC*mu_modelo_interacciones
+mu2 <- mean(musq)*n
+chi_estat <- (mu2 - nybar)^2/(2*mu2) 
+pvalue_LM <- pchisq(chi_estat,1,lower.tail = FALSE)
+# Null hypothesis: no overdispersion
+cat("\n Estadigrafo LM (Chi2) = ", chi_estat, "\n p-value (Chi2) = ", pvalue_LM, "\n")
+
+# ----------------------- Modelo de Quasi-Poisson ------------------------------
+
+# Ajuste del modelo quasi-Poisson
+modelo_quasi_poisson <- glm(nv ~ matriculados + region, data = datos, 
+                            family = quasipoisson)
+
+# Resumen del modelo quasi-Poisson
+summary(modelo_quasi_poisson)
+
+# --------------------- Comparacion de modelos no anidados ---------------------
+AIC(modelo_zinb, modelo_completo)
+BIC(modelo_zinb, modelo_completo)
+
+# Vuong test para comparar modelos no anidados
+vuong(modelo_zinb, modelo_completo)
