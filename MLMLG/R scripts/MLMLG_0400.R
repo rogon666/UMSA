@@ -19,30 +19,37 @@ library(ggplot2)
 x <- c(1,1,1,1,0,1,1,0,1,0,1,1,1,0,1,1,1,1,1,1,0,0,0,1)
 n <- length(x)
 soporte <- seq(0,1,length=300)
+sum(x)/n
+# 71% de las mujeres encuestas piensan que el polio no es una enfermedad contagiosa
 
 # Hipotesis: Creer que las enfermedades específicas son contagiosas 
 # es una respuesta cultural aprendida
 
 # ------------------------ PRIORs -------------------------------------
 # Se aplica un modelo Beta-Binomial con dos priors
-# Primer prior: Beta B(15,2) prior informativo sobre p
-# Segundo prior: Beta B(1,1) prior uniforme (incertidumbre sobre p)
+# Primer prior: Beta B(15,2) prior informativo sobre theta
+# Segundo prior: Beta B(1,1) prior uniforme (incertidumbre sobre theta)
   
-
-  prior1 <- dbeta(soporte, shape1 = , shape2 = )
+  # Beta(alpha,beta): primer prior informativo
+  alpha_prior1 = 15
+  beta_prior1 = 2
+  prior1 <- dbeta(soporte, shape1 = alpha_prior1, shape2 = beta_prior1)
   data <- data.frame(x = soporte, y = prior1)
   ggplot(data, aes(x = soporte, y = prior1)) +
     geom_line(color = "blue") +
-    labs(title = "Prior informativo Beta B(15,2)",
+    labs(title = "Prior informativo Beta B(15,2) acerca de theta",
          x = "x",
          y = "Densidad") +
     theme_minimal()
 
-  prior2 <- dbeta(soporte, shape1 = , shape2 = )
+  # Beta(alpha,beta): segundo prior no informativo
+  alpha_prior2 = 1
+  beta_prior2 = 1
+  prior2 <- dbeta(soporte, shape1 = alpha_prior2, shape2 = beta_prior2)
   data <- data.frame(x = soporte, y = prior2)
   ggplot(data, aes(x = soporte, y = prior2)) +
     geom_line(color = "blue") +
-    labs(title = "Prior no informativo Beta B(1,1)",
+    labs(title = "Prior no informativo Beta B(1,1) acerca de theta",
          x = "x",
          y = "Densidad") +
     theme_minimal()
@@ -51,10 +58,31 @@ soporte <- seq(0,1,length=300)
 # La distribucion Beta es conjugada a la binomial, por lo que la 
 # distribucion posterior es Beta
   
-  # Posterior 1:
-
-  # Posterior 2:
-
+  # Posterior 1 (Prior informativo):
+  alpha_posterior1 = alpha_prior1 + sum(x)
+  beta_posterior1 = beta_prior1 + n - sum(x)
+  alpha_posterior1
+  beta_posterior1
+  # Posterior: Beta(32,9)
+  EBeta_posterior1 = alpha_posterior1 / (alpha_posterior1 + beta_posterior1)
+  EBeta_posterior1
+  hpd95_1 <- qbeta(c(0.025,0.975),
+                   sum(x)+alpha_posterior1,
+                   length(x)-sum(x)+beta_posterior1)
+  hpd95_1
+  
+  # Posterior 2 (Prior no informativo):
+  alpha_posterior2 = alpha_prior2 + sum(x)
+  beta_posterior2 = beta_prior2 + n - sum(x)
+  alpha_posterior2
+  beta_posterior2
+  # Posterior: Beta(18,8)
+  EBeta_posterior2 = alpha_posterior2 / (alpha_posterior2 + beta_posterior2)
+  EBeta_posterior2
+  hpd95_2 <- qbeta(c(0.025,0.975),
+                   sum(x)+alpha_posterior2,
+                   length(x)-sum(x)+beta_posterior2)
+  hpd95_2
   
   # Resultados con prior informativo:
   # Densidad posterior de la distribución Beta B(32,9)
