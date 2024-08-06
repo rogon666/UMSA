@@ -1,4 +1,4 @@
-Edad,Sexo,Estado_civil,Education,Empleado,numero_creditos,Monto_credito,Tasa_de_interes,dias_mora,castigo,Tipo de credito
+Edad,Sexo,Estado_civil,Educacion,Empleado,numero_creditos,Monto_credito,Tasa_de_interes,dias_mora,castigo,Tipo_credito
 60,masculino,casado,master,empleado,2,4675000,2.65,72,1,consumo
 25,masculino,casado,secundaria,desempleado,9,3619000,5.19,90,1,vehicular
 30,femenino,soltero,master,empleado,6,957000,2.76,18,0,vehicular
