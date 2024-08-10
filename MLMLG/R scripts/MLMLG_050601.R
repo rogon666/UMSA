@@ -24,7 +24,7 @@ data <- read.csv("salarios.csv")
 data$log_salario <- log(data$salario)
 
 # Dividir la muestra en train y test (70%-30%)
-set.seed()
+set.seed(320)
 trainIndex <- createDataPartition(data$log_salario, p = .7, 
                                   list = FALSE, 
                                   times = 1)
@@ -55,8 +55,11 @@ mape <- function(actual, predicted) {
 linear_model <- lm(log_salario ~ educacion + educacionmadre + edad + 
                      antiguedad_ejecutivo + educacion_grado + antiguedad + 
                      educacion_posgrado + valor_empresa + beneficios_empresa + 
-                     ventas_empresa, data = trainData)
+                     ventas_empresa, 
+                   data = trainData)
+
 linear_pred <- predict(linear_model, newdata = testData)
+
 linear_rmse <- sqrt(mean((y_test - linear_pred)^2))
 linear_mae <- mean(abs(y_test - linear_pred))
 linear_r2 <- summary(linear_model)$r.squared

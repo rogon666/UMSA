@@ -71,13 +71,14 @@ for (feature in categorical_features) {
 datos$target <- as.factor(datos$target)
 
 # Dividir los datos en conjuntos de entrenamiento y prueba
-set.seed()
+set.seed(342)
 train_index <- createDataPartition(datos$target, p = 0.7, list = FALSE)
 train_data <- datos[train_index, ]
 test_data <- datos[-train_index, ]
 
 # Ajustar el modelo logit usando las variables transformadas a WOE
-modelo_logit <- glm(target ~ ., data = train_data, family = binomial)
+modelo_logit <- glm(target ~ ., data = train_data, 
+                    family = binomial)
 
 # Resultados del modelo
 summary(modelo_logit)
