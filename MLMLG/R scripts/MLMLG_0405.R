@@ -23,9 +23,9 @@ datos <- read.csv("scoring.csv")
 # Mostrar las primeras filas del dataset para entender las variables
 head(datos)
 
-# Crear la variable dependiente
+# Crear la variable dependiente: 1: default crediticio, 0: no default 
 datos <- datos %>%
-  mutate(target = ifelse(dias_mora > & castigo == 1, 1, 0))
+  mutate(target = ifelse(dias_mora > 60 & castigo == 1, 1, 0))
 
 # Eliminar las variables 'dias_mora', 'castigo' y 'Monto_credito' del conjunto de datos
 datos <- datos %>%
@@ -92,10 +92,10 @@ predicciones_logit <- predict(modelo_logit_reducido, type = "link")
 
 # Definir el offset y el factor
 offset <-   
-factor <-   
-
-# Transformar las predicciones en puntuaciones crediticias
-scores_crediticios <- offset - factor * predicciones_logit
+  factor <-   
+  
+  # Transformar las predicciones en puntuaciones crediticias
+  scores_crediticios <- offset - factor * predicciones_logit
 
 # Agregar las puntuaciones crediticias al dataset original
 datos_final <- datos %>%
