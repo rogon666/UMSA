@@ -91,8 +91,10 @@ summary(modelo_logit_reducido)
 predicciones_logit <- predict(modelo_logit_reducido, type = "link")
 
 # Definir el offset y el factor
-offset <-   
-  factor <-   
+offset <- 600   
+  factor <- 20  
+# Vease: Siddiqi, N. (2017). Intelligent credit scoring: Building and implementing better credit risk scorecards. 
+# John Wiley & Sons.
   
   # Transformar las predicciones en puntuaciones crediticias
   scores_crediticios <- offset - factor * predicciones_logit
@@ -123,10 +125,10 @@ modelo_Bayesiano <- brm(
   data = datos, 
   family = bernoulli(link = "logit"), 
   prior = c(set_prior("normal(0, 5)", class = "b")),
-  chains = , 
-  iter = , 
-  warmup = ,
-  seed = 666
+  chains = 2, 
+  iter = 1000, 
+  warmup = 100,
+  seed = 10
 )
 
 # Summary of the model
