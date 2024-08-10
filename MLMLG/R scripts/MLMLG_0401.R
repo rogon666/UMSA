@@ -8,8 +8,8 @@
 # ==========================================================
 #    Metodos Bayesianos: integracion de Monte Carlo
 # ==========================================================
-simulaciones = 
+simulaciones = 1000
 c.sample <- rcauchy(,3,2)
- <- atan(c.sample[c.sample > exp(1) & c.sample < pi]^(1/3))
-hist()
+ resultados <- atan(c.sample[c.sample > exp(1) & c.sample < pi]^(1/3))
+hist(resultados)
 mean(atan(c.sample[c.sample > exp(1) & c.sample < pi]^(1/3)))

@@ -13,7 +13,7 @@ library(MASS)    # Para mvrnorm
 library(ggplot2) # Para visualización
 
 # Datos simulados
-set.seed()
+set.seed(666)
 n <- 100
 p <- 2
 X <- cbind(1, matrix(rnorm(n * p), n, p)) # Matriz de diseño con intercepto

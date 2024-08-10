@@ -13,7 +13,7 @@ library(MASS)    # Para mvrnorm
 library(ggplot2) # Para visualización
 
 # Datos simulados
-set.seed()
+set.seed(666)
 n <- 100
 p <- 2
 X <- cbind(1, matrix(rnorm(n * p), n, p)) # Matriz de diseño con intercepto
@@ -56,7 +56,7 @@ n_samples <- 10000
 proposal_sd <- 0.1
 
 # Ejecutar el algoritmo
-set.seed()
+set.seed(666)
 beta_samples <- metropolis(initial_beta, X, y, n_samples, proposal_sd)
 
 # Convertir las muestras a data frames
