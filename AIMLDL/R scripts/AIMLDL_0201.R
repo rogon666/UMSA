@@ -20,6 +20,9 @@ download.file(url, destfile = "discapacidad.csv")
 datos <- read.csv("discapacidad.csv")
 
 # ---------------- Pre-procesamiento (preparacion de datos) --------------------
+
+# Espacio de caracteristicas (features): X (variables explicativas)
+
 # Discapacidad 
 datos$discapacidad <- 0
 datos$discapacidad[datos$Doyouhavedifficultyseeinge %in% c(42, 43, 44) |
@@ -48,14 +51,14 @@ tabla_sevdiscapacidad<- table(datos$discapacidad_severa)
 print(tabla_sevdiscapacidad)
 
 # Gráfico de barras para la variable discapacidad
-barplot(, 
+barplot(tabla_discapacidad, 
         main = "Frecuencia de discapacidad", 
         xlab = "discapacidad", 
         ylab = "Frecuencia", 
         col = "lightblue")
 
 # Gráfico de barras para la variable discapacidad severa
-barplot(, 
+barplot(tabla_sevdiscapacidad, 
         main = "Frecuencia de discapacidad severa", 
         xlab = "discapacidad severa", 
         ylab = "Frecuencia", 
@@ -83,7 +86,7 @@ table(datos$ecivil)
 datos$edad <- datos$age
 hist(datos$edad)
 
-# Calidad de vida:
+# Calidad de vida, target, output, variable dependiente: 
 datos$calidadvida <- datos$Ingeneralhowisyourliveliho
 calidadvida_labels <- c("Mucho peor", "Peor", "Igual", "Mejor", "Mucho mejor")
 datos$calidadvida <- factor(datos$calidadvida, levels = 77:81, labels = calidadvida_labels)
@@ -107,6 +110,7 @@ table(datos$distrito)
 
 # ------------------- APRENDIZAJE SUPERVISADO ----------------------------------
 
+# Output, target, etiquetando: 
 # Calidad de vida colapsada a dos categorías:
 datos$y <- factor(
   ifelse(datos$calidadvida %in% c("Mejor", "Mucho mejor"), 1, 0),
@@ -115,10 +119,10 @@ datos$y <- factor(
 )
 
   # Submuestra de personas con discapacidad
-  submuestra_discapacidad <- subset(datos, discapacidad == )
+  submuestra_discapacidad <- subset(datos, discapacidad == 1)
   
   # Submuestra de personas con discapacidad severa
-  submuestra_discapacidad_severa <- subset(datos, discapacidad_severa == )
+  submuestra_discapacidad_severa <- subset(datos, discapacidad_severa == 1)
 
 # Ver la tabla de la nueva variable colapsada
 table(datos$y, datos$calidadvida)
@@ -132,7 +136,7 @@ barplot(tabla_y,
         col = "lightcoral")
 
 # Modelo logit
-modelo_logit <- glm(y ~ educacion +  + ecivil +  + accesofin,
+modelo_logit <- glm(y ~ educacion + edad + ecivil + sexo + accesofin,
                     data = datos, 
                     family = binomial)
 
@@ -151,7 +155,7 @@ barplot(table(submuestra_discapacidad$y),
         col = "lightcoral")
 
 # Estimar el modelo logit para la submuestra de personas con discapacidad
-modelo_logit_discapacidad <- glm(y ~ ,
+modelo_logit_discapacidad <- glm(y ~ educacion + edad + ecivil + sexo + accesofin,
                                  data = submuestra_discapacidad, 
                                  family = binomial)
 
@@ -160,17 +164,17 @@ summary(modelo_logit_discapacidad)
 exp(coef(modelo_logit_discapacidad))
 
 # Estimar el modelo logit para la submuestra de personas con discapacidad severa
-modelo_logit_discapacidad_severa <- glm(y ~ ,
+modelo_logit_discapacidad_severa <- glm(y ~ educacion + edad + ecivil + sexo + accesofin,
                                         data = submuestra_discapacidad_severa, 
                                         family = binomial)
 
 # Resumen del modelo
 summary(modelo_logit_discapacidad_severa)
 
-set.seed()  # Establecer una semilla para la reproducibilidad
+set.seed(926)  # Establecer una semilla para la reproducibilidad
 
 # Proporción de la muestra de entrenamiento
-train_prop <-
+train_prop <- 0.7
 
 # Índices de muestra de entrenamiento
 train_indices <- sample(1:nrow(datos), size = round(train_prop * nrow(datos)))
@@ -180,8 +184,8 @@ train_data <- datos[train_indices, ]
 test_data <- datos[-train_indices, ]
 
 # Estimar el modelo logit en la muestra de entrenamiento
-modelo_logit_train <- glm(,
-                          data = , 
+modelo_logit_train <- glm(y ~ educacion + edad + ecivil + sexo + accesofin,
+                          data = train_data, 
                           family = binomial)
 
 # Resumen del modelo
@@ -189,7 +193,7 @@ summary(modelo_logit_train)
 
 # Predicciones en términos de probabilidad en la muestra de prueba
 predicciones_prob_y <- predict(modelo_logit_train, 
-                               newdata = , 
+                               newdata = test_data, 
                                type = "response")
 
 # Convertir las probabilidades a clasificaciones binarias (0 o 1) usando un umbral de 0.5
@@ -203,7 +207,7 @@ matriz_confusion
 exactitud <- sum(diag(matriz_confusion)) / sum(matriz_confusion)
 print(paste("Exactitud (accuracy): ", round(exactitud, 4)))
 
-aprendizaje_supervisado <- function(datos, formula_modelo, train_proporcion = 0.7, seed = ) {
+aprendizaje_supervisado <- function(datos, formula_modelo, train_proporcion = 0.7, seed = 936) {
   # Paso 1: Dividir los datos en muestras de entrenamiento y prueba
   set.seed(seed)
   train_indices <- sample(1:nrow(datos), size = round(train_proporcion * nrow(datos)))
@@ -241,11 +245,11 @@ aprendizaje_supervisado <- function(datos, formula_modelo, train_proporcion = 0.
 
 # Ejemplo de uso de la función
 res1 <- aprendizaje_supervisado(datos, 
-                                y ~ )
+                                y ~ educacion + edad + ecivil + sexo + accesofin)
 res2 <- aprendizaje_supervisado(submuestra_discapacidad, 
-                                y ~ )
+                                y ~ educacion + edad + ecivil + sexo + accesofin)
 res3 <- aprendizaje_supervisado(submuestra_discapacidad_severa, 
-                                y ~ )
+                                y ~ educacion + edad + ecivil + sexo + accesofin)
 
 # ------------------ APRENDIZAJE NO SUPERVISADO --------------------------------
 
