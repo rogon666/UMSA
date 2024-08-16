@@ -8,6 +8,7 @@
 # ==========================================================
 #       Aprendizaje supervisado y no supervisado
 # ==========================================================
+rm(list = ls())
 library(ggplot2)
 # install.packages("klaR")
 library(klaR)
