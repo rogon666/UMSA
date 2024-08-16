@@ -89,14 +89,14 @@ table(submuestra_discapacidad_severa$y)
 
 # ------ APRENDIZAJE SUPERVISADO CON ESTIMACION ROLLING ------------------------
 
-set.seed(926)  # Establecer una semilla para la reproducibilidad
+set.seed()  # Establecer una semilla para la reproducibilidad
 
 # Crear una lista para almacenar los resultados
 resultados <- data.frame(Proporcion_Entrenamiento = numeric(),
                          Exactitud = numeric())
 
 # Bucle para variar el porcentaje de entrenamiento desde 20% a 80%
-for (train_prop in seq(0.2, 0.8, by = 0.01)) {
+for (train_prop in seq(0., 0., by = )) {
   
   # Índices de muestra de entrenamiento
   train_indices <- sample(1:nrow(submuestra_discapacidad_severa), 
