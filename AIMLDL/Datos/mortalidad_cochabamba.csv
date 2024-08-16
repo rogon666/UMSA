@@ -1,4 +1,4 @@
-causa_muertes,depto_nacimiento,lugar_de_fallecimiento,edad,astrology,estado_civil,grado_instruccion,tuvo_atencion_medica,atendio_el_medico_que_suscribe
+causa_muertes,depto_nacimiento,lugar_de_fallecimiento,edad,signo_zodiacal,estado_civil,grado_instruccion,tuvo_atencion_medica,atendio_el_medico_que_suscribe
 Natural,ORURO,Vivienda (domicilio),86,4,Soltero(a),Sin instruccion,NO,NO
 Natural,CHUQUISACA,Vivienda (domicilio),83,4,Casado(a),Sin instruccion,NO,NO
 Natural,COCHABAMBA,Via Publica,61,2,Casado(a),Primaria,NO,NO
