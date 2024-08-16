@@ -21,6 +21,7 @@ df <- read.csv("fraudes.csv")
 # Separar las características (X) y la variable objetivo (y)
 X <- df[, -1]
 y <- df$fraude
+hist(y)
 
 # Realizar clustering K-means con 2 grupos
 set.seed(42)
