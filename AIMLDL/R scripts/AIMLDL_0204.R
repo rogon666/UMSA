@@ -12,6 +12,7 @@ rm(list = ls())
 
 # Cargar librerías necesarias
 library(ggplot2)
+library(caret)
 
 # --------- Cargar los datos desde el archivo CSV de GitHub --------------------
 url = "https://raw.githubusercontent.com/rogon666/UMSA/main/AIMLDL/Datos/fraudes_tarjetascredito.csv"
@@ -20,16 +21,11 @@ df <- read.csv("fraudes.csv")
 
 # Separar las características (X) y la variable objetivo (y)
 X <- df[, -1]
-y <- df$fraude
-hist(y)
+y <- 
 
 # Realizar clustering K-means con 2 grupos
 set.seed(42)
-kmeans_model <- kmeans(X, centers = 2, nstart = 25)
-
-# Realizar clustering K-means con 2 grupos
-set.seed(42)
-kmeans_model <- kmeans(X, centers = 2, nstart = 25)
+kmeans_model <- kmeans(X, centers = 2)
 
 # Añadir los clusters al conjunto de datos
 df$cluster <- as.factor(kmeans_model$cluster)
@@ -61,15 +57,15 @@ ggplot(df, aes(x = PC1, y = PC2, color = cluster)) +
 clusters <- kmeans_model$cluster
 conf_matrix <- table(y, clusters)
 
-# Alternativamente, puedes invertir los clusters y comparar de nuevo
+# Alternativamente, es posible invertir los clusters y comparar de nuevo
 clusters_adjusted <- ifelse(clusters == 1, 2, 1)
 conf_matrix_adjusted <- table(y, clusters_adjusted)
-
-confusionMatrix(y, clusters_adjusted)
   
 # Mostrar las matrices de confusión
 print("Matriz de confusión original:")
 print(conf_matrix)
+exactitud_1 <- sum(diag()) / sum()
+exactitud_1
 
 print("Matriz de confusión ajustada:")
 print(conf_matrix_adjusted)

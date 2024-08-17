@@ -61,8 +61,8 @@ model <- train(target ~ edad,
 predictions <- predict(model, newdata = df)
 
 # Convertir las predicciones y el target a factores con los mismos niveles
-predictions <- factor(predictions, levels = c("No_Suicidio", "Suicidio"))
-target <- factor(df$target, levels = c("No_Suicidio", "Suicidio"))
+predictions <- factor(predictions, levels = c("Suicidio","No_Suicidio"))
+target <- factor(df$target, levels = c("Suicidio","No_Suicidio"))
 
 # Evaluar el modelo
 conf_matrix <- confusionMatrix(predictions, target)
