@@ -6,14 +6,13 @@
 # ----------------------------------------------------------
 #        Rolando Gonzales Martinez, Agosto 2024
 # ==========================================================
-#   Aprendizaje supervisado con validazion cruzada
+#   Aprendizaje supervisado con validacion cruzada
 # ==========================================================
 rm(list = ls())
 
 # Cargar librerías necesarias
 library(ggplot2)
-library(caret)
-# library(DMwR)  # Para usar SMOTE
+library(caret) # Matriz confusion
 
 # --------- Cargar los datos desde el archivo CSV de GitHub --------------------
 url = "https://raw.githubusercontent.com/rogon666/UMSA/main/AIMLDL/Datos/mortalidad_cochabamba.csv"

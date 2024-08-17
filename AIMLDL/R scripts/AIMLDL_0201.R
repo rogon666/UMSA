@@ -255,7 +255,7 @@ res3 <- aprendizaje_supervisado(submuestra_discapacidad_severa,
 # ------------------ APRENDIZAJE NO SUPERVISADO --------------------------------
 
 # variables de clusterizacion:
-vars_clusterizacion <- c("grupo", "distrito", "", "", "")
+vars_clusterizacion <- c("grupo", "distrito", "educacion", "edad", "ecivil")
 
 # Eliminar filas con NA en las variables categóricas
 datos_limpios <- na.omit(datos[,vars_clusterizacion ])
@@ -264,7 +264,7 @@ datos_limpios$grupo <- as.factor(datos_limpios$grupo)
 datos_limpios$distrito <- as.factor(datos_limpios$distrito)
 
 # Aplicar k-modes con el número seleccionado de clusters, por ejemplo, 3 clusters
-set.seed()  # Para reproducibilidad
+set.seed(811)  # Para reproducibilidad
 kmodes_result <- kmodes(datos_limpios[, vars_clusterizacion], modes = 3)
 
 # Agregar los clusters resultantes al dataframe original
@@ -274,11 +274,11 @@ datos_limpios$cluster <- kmodes_result$cluster
 table(datos_limpios$cluster)
 
 # Graficar los clusters
-ggplot(datos_limpios, aes(y = educacion, x = edad, color = factor(cluster))) +
+ggplot(datos_limpios, aes(y = ecivil, x = edad, color = factor(cluster))) +
   geom_point(size = 3) +
   labs(title = "Análisis no supervisado (k-modas)",
        x = "Edad",
-       y = "Educacion",
+       y = "ecivil",
        color = "Cluster") +
   theme_minimal()
 # -------------------------------------------------------------------------------

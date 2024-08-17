@@ -89,14 +89,14 @@ table(submuestra_discapacidad_severa$y)
 
 # ------ APRENDIZAJE SUPERVISADO CON ESTIMACION ROLLING ------------------------
 
-set.seed()  # Establecer una semilla para la reproducibilidad
+set.seed(925)  # Establecer una semilla para la reproducibilidad
 
 # Crear una lista para almacenar los resultados
 resultados <- data.frame(Proporcion_Entrenamiento = numeric(),
                          Exactitud = numeric())
 
 # Bucle para variar el porcentaje de entrenamiento desde 20% a 80%
-for (train_prop in seq(0., 0., by = )) {
+for (train_prop in seq(0.2, 0.8, by = 0.01)) {
   
   # Índices de muestra de entrenamiento
   train_indices <- sample(1:nrow(submuestra_discapacidad_severa), 
@@ -136,7 +136,7 @@ for (train_prop in seq(0., 0., by = )) {
 
 # Calcular la media de la exactitud
 media_exactitud <- mean(resultados$Exactitud)
-# Calcular la media de accesofin
+# Calcular la media de Tratamiento
 media_tratamiento <- mean(resultados$Tratamiento)
 
 # Graficar los resultados de exactitud usando ggplot2 con línea media
