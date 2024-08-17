@@ -1,4 +1,4 @@
-y,edad,sexo,dolorpecho,presion_sanguinea,colesterol,azucar,electrocardiograma,ritmo_cardiaco,angina,caidast,pendientest,numerovasos,talasemia
+y,edad,sexo,dolorpecho,presion,colesterol,azucar,electrocardiograma,ritmo_cardiaco,angina,caidast,pendientest,numerovasos,talasemia
 0,63,1,1,145,233,1,2,150,0,2.3,3,0,6
 2,67,1,4,160,286,0,2,108,1,1.5,2,3,3
 1,67,1,4,120,229,0,2,129,1,2.6,2,2,7
