@@ -1,0 +1,101 @@
+causa_muertes,depto_nacimiento,lugar_de_fallecimiento,edad,estado_civil,grado_instruccion,educacion
+Natural,ORURO,Vivienda (domicilio),86,Soltero(a),Sin instruccion,0
+Natural,CHUQUISACA,Vivienda (domicilio),83,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),93,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),78,Casado(a),Sin instruccion,0
+Natural,LA PAZ,Vivienda (domicilio),83,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),90,Soltero(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),91,Soltero(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),69,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),71,Soltero(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),78,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),93,Soltero(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),91,Casado(a),Sin instruccion,0
+Natural,ORURO,Establecimiento de Salud,91,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),88,Casado(a),Sin instruccion,0
+Natural,POTOSI,Vivienda (domicilio),98,Soltero(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),59,Soltero(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),84,Viudo(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),82,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),103,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),75,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),83,Casado(a),Sin instruccion,0
+Natural,POTOSI,Vivienda (domicilio),80,Soltero(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),89,Viudo(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),82,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),84,Casado(a),Sin instruccion,0
+Natural,POTOSI,Vivienda (domicilio),37,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),38,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),71,Soltero(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),71,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),81,Soltero(a),Sin instruccion,0
+Natural,POTOSI,Vivienda (domicilio),51,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Vivienda (domicilio),77,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,Vivienda (domicilio),0,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,Vivienda (domicilio),75,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,Establecimiento de Salud,75,Casado(a),Sin instruccion,0
+Subita,COCHABAMBA,Vivienda (domicilio),85,Casado(a),Sin instruccion,0
+Subita,ORURO,Establecimiento de Salud,62,Viudo(a),Sin instruccion,0
+Subita,ORURO,Establecimiento de Salud,63,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,Vivienda (domicilio),58,Casado(a),Sin instruccion,0
+Subita,COCHABAMBA,Vivienda (domicilio),66,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,Vivienda (domicilio),77,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,Vivienda (domicilio),51,Casado(a),Sin instruccion,0
+Subita,COCHABAMBA,Vivienda (domicilio),74,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,Establecimiento de Salud,72,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,Vivienda (domicilio),88,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,Vivienda (domicilio),0,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,No puede determinarse,76,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,Vivienda (domicilio),63,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,Vivienda (domicilio),73,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,Vivienda (domicilio),78,Casado(a),Sin instruccion,0
+Subita,COCHABAMBA,No puede determinarse,82,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,No puede determinarse,90,Soltero(a),Sin instruccion,0
+Subita,COCHABAMBA,Vivienda (domicilio),87,Soltero(a),Sin instruccion,0
+Suicidio,COCHABAMBA,No puede determinarse,57,Casado(a),Sin instruccion,0
+Natural,COCHABAMBA,Via Publica,61,Casado(a),Primaria,6
+Natural,CHUQUISACA,Vivienda (domicilio),51,Soltero(a),Primaria,6
+Natural,COCHABAMBA,Vivienda (domicilio),89,Soltero(a),Primaria,6
+Natural,CHUQUISACA,Vivienda (domicilio),25,Soltero(a),Primaria,6
+Natural,COCHABAMBA,Vivienda (domicilio),26,Soltero(a),Primaria,6
+Natural,POTOSI,Vivienda (domicilio),69,Viudo(a),Primaria,6
+Natural,COCHABAMBA,Vivienda (domicilio),85,Viudo(a),Primaria,6
+Natural,COCHABAMBA,Vivienda (domicilio),87,Soltero(a),Primaria,6
+Natural,COCHABAMBA,Vivienda (domicilio),66,Soltero(a),Primaria,6
+Natural,COCHABAMBA,Vivienda (domicilio),72,Soltero(a),Primaria,6
+Natural,COCHABAMBA,Establecimiento de Salud,55,Casado(a),Primaria,6
+Natural,ORURO,Vivienda (domicilio),83,Viudo(a),Primaria,6
+Natural,COCHABAMBA,Vivienda (domicilio),73,Casado(a),Primaria,6
+Natural,COCHABAMBA,Vivienda (domicilio),77,Casado(a),Primaria,6
+Natural,COCHABAMBA,Vivienda (domicilio),36,Casado(a),Primaria,6
+Natural,COCHABAMBA,Vivienda (domicilio),53,Casado(a),Primaria,6
+Natural,COCHABAMBA,Vivienda (domicilio),64,Soltero(a),Primaria,6
+Natural,COCHABAMBA,Vivienda (domicilio),59,Casado(a),Primaria,6
+Natural,COCHABAMBA,Vivienda (domicilio),68,Soltero(a),Primaria,6
+Natural,COCHABAMBA,Vivienda (domicilio),71,Casado(a),Primaria,6
+Subita,COCHABAMBA,Vivienda (domicilio),48,Casado(a),Primaria,6
+Subita,COCHABAMBA,Vivienda (domicilio),62,Soltero(a),Primaria,6
+Subita,COCHABAMBA,Vivienda (domicilio),78,Casado(a),Primaria,6
+Subita,COCHABAMBA,Vivienda (domicilio),22,Casado(a),Primaria,6
+Subita,COCHABAMBA,Vivienda (domicilio),73,Soltero(a),Primaria,6
+Subita,COCHABAMBA,Vivienda (domicilio),81,Casado(a),Primaria,6
+Subita,COCHABAMBA,No puede determinarse,60,Soltero(a),Primaria,6
+Subita,COCHABAMBA,No puede determinarse,57,Soltero(a),Primaria,6
+Subita,COCHABAMBA,Vivienda (domicilio),81,Soltero(a),Primaria,6
+Subita,SANTA CRUZ,Vivienda (domicilio),88,Viudo(a),Primaria,6
+Suicidio,COCHABAMBA,Establecimiento de Salud,25,Union Estable,Primaria,6
+Suicidio,COCHABAMBA,Vivienda (domicilio),64,No puede determinarse,Primaria,6
+Suicidio,COCHABAMBA,Vivienda (domicilio),16,Soltero(a),Primaria,6
+Natural,COCHABAMBA,Via Publica,85,Casado(a),Secundaria,12
+Natural,COCHABAMBA,Establecimiento de Salud,95,Viudo(a),Secundaria,12
+Natural,COCHABAMBA,Vivienda (domicilio),39,Soltero(a),Secundaria,12
+Natural,POTOSI,Vivienda (domicilio),57,Casado(a),Secundaria,12
+Subita,COCHABAMBA,Establecimiento de Salud,29,Casado(a),Secundaria,12
+Subita,COCHABAMBA,Vivienda (domicilio),59,Soltero(a),Secundaria,12
+Suicidio,SANTA CRUZ,Establecimiento de Salud,15,Soltero(a),Secundaria,12
+Natural,COCHABAMBA,Vivienda (domicilio),90,Casado(a),Tecnico,15
+Natural,COCHABAMBA,Vivienda (domicilio),73,Casado(a),Tecnico,15
+Suicidio,LA PAZ,Vivienda (domicilio),31,Soltero(a),Tecnico,15
+Suicidio,COCHABAMBA,Vivienda (domicilio),20,No puede determinarse,No puede determinarse,
+Suicidio,COCHABAMBA,Establecimiento de Salud,42,Casado(a),No puede determinarse,
+Suicidio,COCHABAMBA,Vivienda (domicilio),50,Casado(a),Otro,
