@@ -46,27 +46,27 @@ test %>%
 
 # ------------- Entrenamiento del modelo Prophet -------------------------------
 # Entrenar el modelo Prophet
-modelo_profeta <- prophet(train,
+modelo_profeta_chp20 <- prophet(train,
                           n.changepoints = )
-modelo_profeta_htun <- prophet(train,
+modelo_profeta_chp05 <- prophet(train,
                                n.changepoints = )
 
 # ----------- Predicciones con el modelo Prophet -------------------------------
 # Realizar predicciones
-predicciones <- make_future_dataframe(modelo_profeta, periods = nrow(test))
+predicciones <- make_future_dataframe(modelo_profeta_chp20, periods = nrow(test))
 pseudopronostico <- predict(modelo_profeta, predicciones)
 
-predicciones_htun <- make_future_dataframe(modelo_profeta_htun, periods = nrow(test))
+predicciones_htun <- make_future_dataframe(modelo_profeta_chp05, periods = nrow(test))
 pseudopronostico_htun <- predict(modelo_profeta_htun, predicciones_htun)
 
 # ------------------ Evaluacion del modelo -------------------------------------
 BTC_observado <- test$y
 
-BTC_pronosticado      <- tail(pseudopronostico$yhat, nrow(test))
+BTC_pronosticado_chp20      <- tail(pseudopronostico_chp20$yhat, nrow(test))
 mae <- mean(abs(BTC_pronosticado - BTC_observado)) # Error medio absoluto
 mse <- mean((BTC_pronosticado - BTC_observado)^2)  # Error cuadratico medio (Promedio del error cuadratico)
 
-BTC_pronosticado_htun <- tail(pseudopronostico_htun$yhat, nrow(test))
+BTC_pronosticado_chp05 <- tail(pseudopronostico_chp05$yhat, nrow(test))
 mae_htun <- mean(abs(BTC_pronosticado_htun - BTC_observado)) # Error medio absoluto
 mse_htun <- mean((BTC_pronosticado_htun - BTC_observado)^2)  # Error cuadratico medio (Promedio del error cuadratico)
 
@@ -80,15 +80,15 @@ mse_htun
 comparison_df <- data.frame(
   Date = test$ds,
   BTCUSD_observado = BTC_observado,
-  BTCUSD_pronosticado = BTC_pronosticado,
-  BTCUSD_pronosticado_htun = BTC_pronosticado_htun
+  BTCUSD_pronosticado = BTC_pronosticado_chp05,
+  BTCUSD_pronosticado_htun = BTC_pronosticado_chp20 
 )
 
 # Graficar la comparación de observados vs pronosticados
 ggplot(comparison_df, aes(x = Date)) +
   geom_line(aes(y = BTCUSD_observado, color = "hold-out")) +
-  geom_line(aes(y = BTCUSD_pronosticado, color = "pseudopronostico")) +
-  geom_line(aes(y = BTCUSD_pronosticado_htun, color = "pseudopronostico htun")) +
+  geom_line(aes(y = BTCUSD_pronosticado_chp05, color = "pseudopronostico")) +
+  geom_line(aes(y = BTCUSD_pronosticado_chp20, color = "pseudopronostico htun")) +
   labs(title = "Comparación de Valores Observados y Pronosticados",
        y = "Precio de Bitcoin (USD)", x = "") +
   theme_minimal() + 
