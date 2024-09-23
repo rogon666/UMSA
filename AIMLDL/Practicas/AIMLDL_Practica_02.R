@@ -13,6 +13,7 @@
 library(caret)
 library(e1071)
 library(randomForest)
+library(readr)
 
 # -------------------- Cargar el conjunto de datos -----------------------------
 url <- 'https://raw.githubusercontent.com/rogon666/UMSA/main/AIMLDL/Datos/enfermedades_cardiacas.csv'
@@ -32,9 +33,9 @@ y <- df$diagnostico
 y <- ifelse(y == 0, 0, 1)
 
 #------  Dividir el dataset en conjunto de entrenamiento y prueba --------------
-semilla = 
+semilla = 248
 set.seed(semilla)
-porcentaje_entrenamiento = # 70% de los datos
+porcentaje_entrenamiento = 0.7 # 70% de los datos
 trainIndex <- createDataPartition(y, 
                                   p = porcentaje_entrenamiento, 
                                   list = FALSE)
@@ -46,7 +47,7 @@ y_test <- y[-trainIndex]
 # --------------------------- Modelo de SVM ------------------------------------
 modelo_svm <- svm(x = X_train, 
                   y = as.factor(y_train), 
-                  kernel = "",
+                  kernel = "radial",
                   random_state = semilla,
                   probability = TRUE)
 
@@ -57,7 +58,7 @@ exactitud_svm <- sum(pred_svm == y_test) / length(y_test)
 
 # ---------------------- Modelo de Random Forest -------------------------------
 bosque_aleatorio <- randomForest(x = X_train, 
-                                 ntree = ,
+                                 ntree = 100,
                                  y = as.factor(y_train), 
                                  random_state = semilla)
 
@@ -70,4 +71,5 @@ exactitud_rf <- sum(pred_rf == y_test) / length(y_test)
 # --------------------- Comparar las exactitudes -------------------------------
 exactitud_rf
 exactitud_svm
+# Mejor modelo: SVM
 # ------------------------------------------------------------------------------
