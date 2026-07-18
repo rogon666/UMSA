@@ -7,7 +7,7 @@
 #        Rolando Gonzales Martinez, Julio 2026
 # ==========================================================
 #   Pronostico automatico (S)AR(I)(S)MA y fan charts
-# -----------------------------------------------------------
+# ----------------------------------------------------------
 
 # Paquetes necesarios
 if (!require(quantmod)) install.packages("quantmod")
@@ -54,9 +54,9 @@ set.seed(666)
 sim <- matrix(NA, nrow = hpron, ncol = 1000)
 for (i in 1:1000) sim[, i] <- simulate(modelo, nsim = hpron)
 
-# Comparamos el intervalo 95% de ambos metodos en h=24
-forecast_95 <- c(f$lower[24, "95%"], f$upper[24, "95%"])
-sim_95 <- quantile(sim[24, ], probs = c(0.025, 0.975))
+# Comparamos el intervalo 95% de ambos metodos en el horizonte hpron
+forecast_95 <- c(f$lower[hpron, "95%"], f$upper[hpron, "95%"])
+sim_95 <- quantile(sim[hpron, ], probs = c(0.025, 0.975))
 
 cat("Intervalo forecast():", forecast_95, "\n")
 cat("Intervalo simulado:  ", sim_95, "\n")
